@@ -1,9 +1,10 @@
-import routerx from 'express-promise-router';
-import personRouter from './person';
+'use strict'
 
-const router = routerx();
+const routerx = require('express-promise-router');
+const personRouter = require('./person');
+
+var router = routerx();
 
 router.use('/person', personRouter);
 
-
-export default router;
+module.exports = router;

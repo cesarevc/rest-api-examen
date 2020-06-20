@@ -1,8 +1,12 @@
-import routerx from 'express-promise-router';
-import personController from '../controllers/PersonController';
+'use strict'
+
+const routerx = require('express-promise-router');
+
+const personController = require('../controllers/personController');
 
 
-const router = routerx();
+var router = routerx();
+
 /**
  * 'add' create a person
  * 'update' edit a specific person
@@ -12,7 +16,10 @@ const router = routerx();
  */
 
 router.post('/add', personController.add);
-router.put('/update', auth.verifyUser, personController.update);
-router.get('/list', auth.verifyUser, personController.list);
-router.get('/query/:id', auth.verifyUser, personController.query);
-router.delete('/remove/:id', auth.verifyUser, personController.remove);
+router.put('/update', personController.update);
+router.get('/list', personController.list);
+router.get('/query/:id', personController.query);
+// router.delete('/remove/:id', personController.remove);
+
+
+module.exports = router;

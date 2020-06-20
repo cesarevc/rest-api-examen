@@ -1,19 +1,20 @@
 'use strict'
 
-//modules to create server
+// modules to create server
 var express = require('express');
 var bodyParser = require('body-parser');
 
-//execute express (http)
+// execute express (http)
 var app = express();
 
-//charge files routes 
-// var routes = require('./routes/person');
+// charge files routes 
+var routes = require('./routes/index');
 
-//middlewares
+// middlewares
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
-//cors activate 
+
+// cors activate 
 // Configure headers and cors
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
@@ -24,8 +25,7 @@ app.use((req, res, next) => {
 });
 
 // routes prefix
-// app.use('/api', routes)
-
+app.use('/api', routes)
 
 
 //export modules (actual file)
