@@ -6,7 +6,7 @@ var Person = require('./../models/person');
 
 
 var controller = {
-    add: async (req, res) => {
+    add: (req, res) => {
 
         // receive data request
         var params = req.body;
@@ -172,6 +172,28 @@ var controller = {
     remove: (req, res) => {
         // pick up person id
         var idPerson = req.params.id;
+        // find person and set state
+        Person.findOneAndUpdate({_id: idPerson}, {state: 0}, {new:true}, (err, personUpdated) => {
+            if(err || !personUpdated) {
+                return res.status(500).send({
+                    status: 'error',
+                    message: 'error al borrar persona'
+                });
+            }
+                        
+            // SUCCESS response to request
+            return res.status(200).send({
+                status: 'success',
+                payload : {
+                    message: 'La persona ah sido borrada exitosamente',
+                    person: personUpdated
+                }
+            });
+        });
+    },
+    delete: (req, res) => {
+        // pick up person id
+        var idPerson = req.params.id;
         // find and delete person
         Person.findOneAndDelete({_id: idPerson}, (err, personRemoved) => {
             if(err) {
@@ -198,7 +220,7 @@ var controller = {
             }); 
 
         });
-    },
+    }    
 };
 
 module.exports = controller;

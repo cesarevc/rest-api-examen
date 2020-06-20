@@ -19,6 +19,10 @@ var PersonSchema = Schema({
     code: { 
         type: String,
         required: true 
+    },
+    state: {
+        type: Number,
+        default: 1,
     }
 });
 
