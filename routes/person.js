@@ -12,14 +12,14 @@ var router = routerx();
  * 'update' edit a specific person
  * 'list' get all registered persons in the database
  * 'query' retrieves a specific person found by id
- * 'delete' remove from database a specific person 
+ * 'remove' remove from database a specific person 
  */
 
 router.post('/add', personController.add);
-router.put('/update', personController.update);
+router.put('/update/:id', personController.update);
 router.get('/list', personController.list);
 router.get('/query/:id', personController.query);
-// router.delete('/remove/:id', personController.remove);
+router.delete('/remove/:id', personController.remove);
 
 
 module.exports = router;
